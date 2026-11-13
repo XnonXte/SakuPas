@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SakuPas — Manajemen Keuangan Mahasiswa</title>
+    <meta name="description" content="Aplikasi manajemen keuangan pribadi terintegrasi khusus untuk mahasiswa di Indonesia. Pantau Safe-to-Spend, kewajiban PayLater, dan transaksi harian." />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <!-- Desktop Sidebar (Fixed 220px) -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <a href="#dashboard" class="brand-wordmark">
+            <span class="brand-title">SakuPas</span>
+            <span class="brand-dot"></span>
+          </a>
+          <p class="brand-subtitle">Finansial Mahasiswa</p>
+        </div>
+
+        <nav class="sidebar-nav">
+          <button class="nav-item-btn active" data-view="dashboard">
+            <div class="nav-item-content">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+              <span>Dashboard</span>
+            </div>
+          </button>
+
+          <button class="nav-item-btn" data-view="transactions">
+            <div class="nav-item-content">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+              <span>Transaksi</span>
+            </div>
+          </button>
+
+          <button class="nav-item-btn" data-view="mode-hemat">
+            <div class="nav-item-content">
+              <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+              <span>Mode Hemat</span>
+            </div>
+            <span class="badge-tag" id="sidebar-mode-hemat-badge" style="display: none;">Aktif</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="user-card">
+            <div class="user-avatar" id="sidebar-user-avatar">RP</div>
+            <div class="user-info">
+              <p class="user-name" id="sidebar-user-name">Rian Pratama</p>
+              <p class="user-role" id="sidebar-user-role">rian@sakupas.id</p>
+            </div>
+          </div>
+
+          <div class="mode-hemat-indicator">
+            <span>Mode Hemat</span>
+            <span class="status-label standby" id="sidebar-mh-status-label">Standby</span>
+          </div>
+
+          <div class="sidebar-actions">
+            <button class="btn-sidebar-action" id="btn-reset-data" title="Reset data ke kondisi awal seeder">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+              <span>Reset Data Simulasi</span>
+            </button>
+
+            <button class="btn-sidebar-action" id="btn-auth-toggle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>
+              <span>Keluar</span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Mobile Top Header -->
+      <header class="mobile-header">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <span class="brand-title">SakuPas</span>
+          <span style="width: 8px; height: 8px; border-radius: 50%; background-color: var(--terracotta);"></span>
+        </div>
+        <span class="view-tag" id="mobile-view-tag">Dashboard</span>
+      </header>
+
+      <!-- Main Content Container -->
+      <main class="main-content">
+        <div class="content-container">
+          <!-- Dynamic View Container -->
+          <div id="view-container"></div>
+
+          <!-- Site Footer -->
+          <footer class="site-footer">
+            <div>
+              <span>SakuPas © 2026</span>
+              <span> • </span>
+              <span>Tipografi: Univers (Heading & Metrik) • Shandon Slab (Body)</span>
+            </div>
+            <div>
+              <span>Backend: Laravel 13 + SQLite Database</span>
+            </div>
+          </footer>
+        </div>
+      </main>
+
+      <!-- Mobile Bottom Navigation -->
+      <nav class="mobile-nav">
+        <div class="mobile-nav-inner">
+          <button class="mobile-nav-btn active" data-view="dashboard">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+            <span style="margin-top: 4px;">Dashboard</span>
+          </button>
+
+          <button class="mobile-nav-btn" data-view="transactions">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+            <span style="margin-top: 4px;">Transaksi</span>
+          </button>
+
+          <button class="mobile-nav-btn" data-view="mode-hemat">
+            <div style="position: relative;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+              <span class="dot-indicator" id="mobile-mode-hemat-dot" style="display: none;"></span>
+            </div>
+            <span style="margin-top: 4px;">Mode Hemat</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Application Script Module -->
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

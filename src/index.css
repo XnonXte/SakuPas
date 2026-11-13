@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/*
+ * SakuPas Design System Typography
+ * Headers & Numbers: Univers
+ * Body & Forms: Shandon Slab
+ * Note: If local font assets are placed in /fonts/, they will be loaded here.
+ */
+@font-face {
+  font-family: 'Univers';
+  src: url('/fonts/Univers.woff2') format('woff2'),
+       url('/fonts/Univers.woff') format('woff');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shandon Slab';
+  src: url('/fonts/ShandonSlab.woff2') format('woff2'),
+       url('/fonts/ShandonSlab.woff') format('woff');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-bg-main: #F8F5F1;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #EFEBE6;
+  --color-text-primary: #343F56;
+  --color-text-secondary: #747B83;
+  --color-divider: #E6E1DB;
+  --color-terracotta: #E9896A;
+  --color-terracotta-hover: #dc7656;
+  --color-terracotta-subtle: #faeae4;
+  --color-sage: #387C6D;
+  --color-sage-hover: #2f695c;
+  --color-sage-subtle: #e5f0ed;
+  --color-navy: #343F56;
+  --color-danger: #C84F4F;
+  --color-danger-subtle: #faeaea;
+
+  --font-univers: 'Univers', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-shandon: 'Shandon Slab', 'Rockwell', 'Courier New', Georgia, serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F8F5F1;
+  color: #343F56;
+  font-family: var(--font-shandon);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Tabular numbers for financial metrics */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom scrollbar matching restrained theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F8F5F1;
+}
+::-webkit-scrollbar-thumb {
+  background: #E6E1DB;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #747B83;
+}
