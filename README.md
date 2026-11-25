@@ -14,17 +14,18 @@ SakuPas/
 ├── frontend/                     # Pure Vanilla Frontend (No Frameworks)
 │   ├── index.html                # Struktur semantik HTML5
 │   ├── css/
-│   │   └── style.css             # Desain editorial minimalis CSS3 murni
+│   │   └── main.css              # Sistem desain responsif CSS3
 │   ├── js/
-│   │   ├── api.js                # Klien API terpusat (Native Fetch API)
+│   │   ├── api.js                # Klien API (jQuery AJAX + Fetch fallback)
 │   │   ├── app.js                # Root orchestrator & navigasi
 │   │   ├── auth.js               # Manajemen otentikasi pengguna
 │   │   ├── dashboard.js          # Layar Dashboard & SVG line chart
 │   │   ├── transactions.js       # Layar Transaksi & SVG donut chart
 │   │   ├── mode-hemat.js         # Layar Mode Hemat & penguncian mandiri
 │   │   └── utils.js              # Pemformat Rupiah, tanggal ID, SVG icons
-│   └── assets/
-│       └── fonts/                # Aset font Univers & Shandon Slab
+│   ├── public/
+│   │   └── js/jquery.min.js      # jQuery lokal untuk request AJAX
+│   └── assets/                   # Ikon dan favicon lokal
 │
 └── backend/                      # Laravel 13 Application
     ├── app/
@@ -48,9 +49,10 @@ SakuPas/
 
 ## 2. Prasyarat Sistem
 
-- **PHP:** Versi 8.2 atau lebih baru (Diuji pada PHP 8.5)
+- **PHP:** Versi 8.3 atau lebih baru (Diuji pada PHP 8.5)
 - **Ekstensi PHP:** `pdo_sqlite`, `mbstring`, `openssl`, `curl`, `json`
 - **Composer:** Versi 2.x
+- **Node.js:** Versi 20.19+ atau 22.12+ untuk Vite
 - **Browser:** Browser modern apa pun (Chrome, Edge, Firefox, Safari)
 
 ---
@@ -87,7 +89,15 @@ Server akan aktif di `http://127.0.0.1:8000`.
 Buka tautan berikut di peramban Anda:
 👉 **[http://localhost:8000](http://localhost:8000)**
 
-*(Frontend langsung tersaji secara mulus melalui Laravel, atau Anda dapat membuka `frontend/index.html` menggunakan Live Server / web server mandiri).*
+Laravel menyajikan `frontend/index.html` beserta stylesheet dan modul JavaScript lokal. Untuk pengembangan frontend dengan hot reload, dari direktori root jalankan:
+```bash
+npm install
+npm run dev
+```
+
+Vite meneruskan request `/api` ke Laravel di `http://127.0.0.1:8000`. Kontrak API tetap berada di `/api/v1`; untuk deployment frontend/backend terpisah, tetapkan `window.SAKUPAS_API_URL` sebelum memuat modul aplikasi.
+
+Saat server API tidak tersedia dan belum ada sesi tersimpan, akun demo dapat berjalan dengan data simulasi lokal. Reset simulasi hanya ditampilkan pada mode demo; pendaftaran akun tetap memerlukan backend.
 
 ---
 

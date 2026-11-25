@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8f7f3">
+    <meta name="description" content="Catatan keuangan yang membantu mahasiswa mengelola uang saku, transaksi, anggaran, dan PayLater dengan lebih tenang.">
+    <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>SakuPas — Catatan keuangan mahasiswa</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#view-content-root">Lewati ke konten</a>
+
+    <aside class="app-sidebar" aria-label="Navigasi utama">
+      <a class="brand" href="#dashboard" aria-label="SakuPas, ke Dashboard">
+        <span class="brand-mark" aria-hidden="true">s</span>
+        <span class="brand-name">sakupas<span class="brand-period">.</span></span>
+      </a>
+      <nav class="sidebar-nav">
+        <button type="button" class="sidebar-nav-btn active" data-view="dashboard">
+          <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="11" width="7" height="10" rx="1"/><rect x="3" y="14" width="8" height="7" rx="1"/></svg></span><span>Ringkasan</span>
+        </button>
+        <button type="button" class="sidebar-nav-btn" data-view="transactions">
+          <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 7h13m0 0-3-3m3 3-3 3M17 17H4m0 0 3 3m-3-3 3-3"/></svg></span><span>Transaksi</span>
+        </button>
+        <button type="button" class="sidebar-nav-btn" data-view="mode-hemat">
+          <span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 19 6v5c0 4.5-2.8 8-7 10-4.2-2-7-5.5-7-10V6l7-3Z"/><path d="M9 12h6"/></svg></span><span>Mode Hemat</span>
+          <span id="sidebar-mode-hemat-badge" class="nav-status-dot" hidden></span>
+        </button>
+      </nav>
+
+      <div class="sidebar-account">
+        <div class="profile-avatar" id="user-profile-avatar" aria-hidden="true">RP</div>
+        <div class="profile-copy">
+          <span id="user-profile-name" class="profile-name">Memuat akun…</span>
+          <span id="user-profile-role" class="profile-role">SakuPas</span>
+        </div>
+        <span id="sidebar-mh-status-tag" class="status-pill badge-safe">Standby</span>
+      </div>
+      <div class="sidebar-actions">
+        <button type="button" id="btn-auth-action" class="text-action" title="Keluar dari akun">
+          <span>Keluar</span>
+        </button>
+        <button type="button" id="btn-reset-simulation" data-action="reset-simulation" class="text-action" hidden>Reset simulasi</button>
+      </div>
+      <p class="sidebar-copyright">SAKUPAS · 2026</p>
+    </aside>
+
+    <header class="mobile-header">
+      <a class="brand" href="#dashboard" aria-label="SakuPas, ke Dashboard">
+        <span class="brand-mark" aria-hidden="true">s</span>
+        <span class="brand-name">sakupas<span class="brand-period">.</span></span>
+      </a>
+      <span id="mobile-header-title" class="mobile-page-title">Ringkasan</span>
+      <button type="button" id="mobile-auth-action" class="mobile-auth-action">Masuk / Daftar</button>
+    </header>
+
+    <main class="app-main">
+      <div class="page-frame">
+        <div id="view-content-root" aria-live="polite"></div>
+        <footer class="app-footer">
+          <span>SakuPas © 2026</span>
+          <span class="footer-divider" aria-hidden="true">/</span>
+          <span>Keuangan mahasiswa, tanpa menghakimi.</span>
+          <button type="button" id="font-notice-toggle" class="footer-link" aria-expanded="false" aria-controls="font-notice">
+            Status aset font
+          </button>
+          <button type="button" id="mobile-reset-simulation" data-action="reset-simulation" class="footer-link mobile-reset-action" hidden>
+            Reset data demo
+          </button>
+          <div id="font-notice" class="font-notice" hidden>
+            SakuPas memakai font sistem agar tampil konsisten tanpa aset eksternal.
+          </div>
+        </footer>
+      </div>
+    </main>
+
+    <nav class="mobile-nav" aria-label="Navigasi halaman">
+      <button type="button" class="mobile-tab-btn active" data-view="dashboard" aria-label="Ringkasan">
+        <span class="mobile-nav-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="11" width="7" height="10" rx="1"/><rect x="3" y="14" width="8" height="7" rx="1"/></svg></span><span>Ringkasan</span>
+      </button>
+      <button type="button" class="mobile-tab-btn" data-view="transactions" aria-label="Transaksi">
+        <span class="mobile-nav-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 7h13m0 0-3-3m3 3-3 3M17 17H4m0 0 3 3m-3-3 3-3"/></svg></span><span>Transaksi</span>
+      </button>
+      <button type="button" class="mobile-tab-btn" data-view="mode-hemat" aria-label="Mode Hemat">
+        <span class="mobile-nav-symbol" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 19 6v5c0 4.5-2.8 8-7 10-4.2-2-7-5.5-7-10V6l7-3Z"/><path d="M9 12h6"/></svg></span><span>Mode Hemat</span>
+        <span id="mobile-mode-hemat-dot" class="mobile-nav-dot" hidden></span>
+      </button>
+    </nav>
+
+    <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+    <div id="auth-modal-root"></div>
+
+    <script src="/js/jquery.min.js"></script>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>
